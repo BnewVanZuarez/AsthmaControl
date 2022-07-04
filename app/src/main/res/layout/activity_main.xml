@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:id="@+id/root_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".home.MainActivity"
+    android:focusableInTouchMode="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@drawable/shape_round_corner2" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/nama_lengkap"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/spacing_mlarge"
+                        android:layout_marginTop="@dimen/spacing_large"
+                        android:text="@string/LOADING"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/greeting"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/spacing_mlarge"
+                        android:text="Selamat Datang"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        android:textColor="@color/white"
+                        android:textStyle="normal"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_baseline_more_horiz_24"
+                        app:tint="@color/white"
+                        android:layout_gravity="center_horizontal"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/spacing_mlarge"
+                        android:layout_marginTop="@dimen/spacing_large"
+                        android:text="@string/app_name"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                        android:textColor="@color/grey_90"
+                        android:textStyle="bold"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusableInTouchMode="true"
+                        android:orientation="vertical">
+
+                        <HorizontalScrollView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_mxlarge"
+                            android:scrollbars="none">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <View
+                                    android:layout_width="@dimen/spacing_smlarge"
+                                    android:layout_height="0dp" />
+
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="150dp"
+                                    android:layout_height="wrap_content"
+                                    app:cardBackgroundColor="@color/red_A200"
+                                    app:cardCornerRadius="4dp"
+                                    app:cardElevation="0dp"
+                                    app:cardUseCompatPadding="false">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="?attr/selectableItemBackgroundBorderless"
+                                        android:clickable="true"
+                                        android:orientation="vertical"
+                                        android:padding="@dimen/spacing_large">
+
+                                        <RelativeLayout
+                                            android:layout_width="35dp"
+                                            android:layout_height="35dp">
+
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_centerInParent="true"
+                                                app:srcCompat="@drawable/shape_circle"
+                                                app:tint="@android:color/white" />
+
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_centerInParent="true"
+                                                android:layout_marginStart="5dp"
+                                                android:layout_marginTop="5dp"
+                                                android:layout_marginEnd="5dp"
+                                                android:layout_marginBottom="5dp"
+                                                app:srcCompat="@drawable/ic_baseline_assignment_24"
+                                                app:tint="@color/red_A200" />
+
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/spacing_middle"
+                                            android:text="Daily Jurnal"
+                                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
+                                            android:textColor="@android:color/white"
+                                            app:fontFamily="sans-serif-medium" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/spacing_medium"
+                                            android:text="Jurnal"
+                                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                                            android:textColor="@color/grey_5" />
+
+                                    </LinearLayout>
+
+                                </androidx.cardview.widget.CardView>
+
+                                <View
+                                    android:layout_width="@dimen/spacing_smlarge"
+                                    android:layout_height="0dp" />
+
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="150dp"
+                                    android:layout_height="wrap_content"
+                                    app:cardBackgroundColor="@color/indigo_A700"
+                                    app:cardCornerRadius="4dp"
+                                    app:cardElevation="0dp"
+                                    app:cardUseCompatPadding="false">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="?attr/selectableItemBackgroundBorderless"
+                                        android:clickable="true"
+                                        android:orientation="vertical"
+                                        android:padding="@dimen/spacing_large">
+
+                                        <RelativeLayout
+                                            android:layout_width="35dp"
+                                            android:layout_height="35dp">
+
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_centerInParent="true"
+                                                app:srcCompat="@drawable/shape_circle"
+                                                app:tint="@android:color/white" />
+
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_centerInParent="true"
+                                                android:layout_marginStart="5dp"
+                                                android:layout_marginTop="5dp"
+                                                android:layout_marginEnd="5dp"
+                                                android:layout_marginBottom="5dp"
+                                                app:srcCompat="@drawable/ic_baseline_verified_user_24"
+                                                app:tint="@color/indigo_A700" />
+
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/spacing_middle"
+                                            android:text="Asthma"
+                                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
+                                            android:textColor="@android:color/white"
+                                            app:fontFamily="sans-serif-medium" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/spacing_medium"
+                                            android:text="Control"
+                                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                                            android:textColor="@color/grey_5" />
+
+                                    </LinearLayout>
+
+                                </androidx.cardview.widget.CardView>
+
+                                <View
+                                    android:layout_width="@dimen/spacing_smlarge"
+                                    android:layout_height="0dp" />
+
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="150dp"
+                                    android:layout_height="wrap_content"
+                                    app:cardBackgroundColor="@color/amber_800"
+                                    app:cardCornerRadius="4dp"
+                                    app:cardElevation="0dp"
+                                    app:cardUseCompatPadding="false">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="?attr/selectableItemBackgroundBorderless"
+                                        android:clickable="true"
+                                        android:orientation="vertical"
+                                        android:padding="@dimen/spacing_large">
+
+                                        <RelativeLayout
+                                            android:layout_width="35dp"
+                                            android:layout_height="35dp">
+
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_centerInParent="true"
+                                                app:srcCompat="@drawable/shape_circle"
+                                                app:tint="@android:color/white" />
+
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_centerInParent="true"
+                                                android:layout_marginStart="5dp"
+                                                android:layout_marginTop="5dp"
+                                                android:layout_marginEnd="5dp"
+                                                android:layout_marginBottom="5dp"
+                                                app:srcCompat="@drawable/ic_baseline_insert_chart_outlined_24"
+                                                app:tint="@color/amber_800" />
+
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/spacing_middle"
+                                            android:text="Peak"
+                                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
+                                            android:textColor="@android:color/white"
+                                            app:fontFamily="sans-serif-medium" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/spacing_medium"
+                                            android:text="Flow"
+                                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                                            android:textColor="@color/grey_5" />
+
+                                    </LinearLayout>
+
+                                </androidx.cardview.widget.CardView>
+
+                                <View
+                                    android:layout_width="@dimen/spacing_smlarge"
+                                    android:layout_height="0dp" />
+
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="150dp"
+                                    android:layout_height="wrap_content"
+                                    app:cardBackgroundColor="@color/red_A200"
+                                    app:cardCornerRadius="4dp"
+                                    app:cardElevation="0dp"
+                                    app:cardUseCompatPadding="false">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="?attr/selectableItemBackgroundBorderless"
+                                        android:clickable="true"
+                                        android:orientation="vertical"
+                                        android:padding="@dimen/spacing_large">
+
+                                        <RelativeLayout
+                                            android:layout_width="35dp"
+                                            android:layout_height="35dp">
+
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_centerInParent="true"
+                                                app:srcCompat="@drawable/shape_circle"
+                                                app:tint="@android:color/white" />
+
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_centerInParent="true"
+                                                android:layout_marginStart="5dp"
+                                                android:layout_marginTop="5dp"
+                                                android:layout_marginEnd="5dp"
+                                                android:layout_marginBottom="5dp"
+                                                app:srcCompat="@drawable/ic_baseline_local_library_24"
+                                                app:tint="@color/red_A200" />
+
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/spacing_middle"
+                                            android:text="Rencana"
+                                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
+                                            android:textColor="@android:color/white"
+                                            app:fontFamily="sans-serif-medium" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/spacing_medium"
+                                            android:text="Aksi Asthma"
+                                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                                            android:textColor="@color/grey_5" />
+
+                                    </LinearLayout>
+
+                                </androidx.cardview.widget.CardView>
+
+                                <View
+                                    android:layout_width="@dimen/spacing_smlarge"
+                                    android:layout_height="0dp" />
+
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="150dp"
+                                    android:layout_height="wrap_content"
+                                    app:cardBackgroundColor="@color/indigo_A700"
+                                    app:cardCornerRadius="4dp"
+                                    app:cardElevation="0dp"
+                                    app:cardUseCompatPadding="false">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="?attr/selectableItemBackgroundBorderless"
+                                        android:clickable="true"
+                                        android:orientation="vertical"
+                                        android:padding="@dimen/spacing_large">
+
+                                        <RelativeLayout
+                                            android:layout_width="35dp"
+                                            android:layout_height="35dp">
+
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_centerInParent="true"
+                                                app:srcCompat="@drawable/shape_circle"
+                                                app:tint="@android:color/white" />
+
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_centerInParent="true"
+                                                android:layout_marginStart="5dp"
+                                                android:layout_marginTop="5dp"
+                                                android:layout_marginEnd="5dp"
+                                                android:layout_marginBottom="5dp"
+                                                app:srcCompat="@drawable/ic_baseline_forum_24"
+                                                app:tint="@color/indigo_A700" />
+
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/spacing_middle"
+                                            android:text="Tanya"
+                                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
+                                            android:textColor="@android:color/white"
+                                            app:fontFamily="sans-serif-medium" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/spacing_medium"
+                                            android:text="Jawab"
+                                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                                            android:textColor="@color/grey_5" />
+
+                                    </LinearLayout>
+
+                                </androidx.cardview.widget.CardView>
+
+                                <View
+                                    android:layout_width="@dimen/spacing_smlarge"
+                                    android:layout_height="0dp" />
+
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="150dp"
+                                    android:layout_height="wrap_content"
+                                    app:cardBackgroundColor="@color/amber_800"
+                                    app:cardCornerRadius="4dp"
+                                    app:cardElevation="0dp"
+                                    app:cardUseCompatPadding="false">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="?attr/selectableItemBackgroundBorderless"
+                                        android:clickable="true"
+                                        android:orientation="vertical"
+                                        android:padding="@dimen/spacing_large">
+
+                                        <RelativeLayout
+                                            android:layout_width="35dp"
+                                            android:layout_height="35dp">
+
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_centerInParent="true"
+                                                app:srcCompat="@drawable/shape_circle"
+                                                app:tint="@android:color/white" />
+
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_centerInParent="true"
+                                                android:layout_marginStart="5dp"
+                                                android:layout_marginTop="5dp"
+                                                android:layout_marginEnd="5dp"
+                                                android:layout_marginBottom="5dp"
+                                                app:srcCompat="@drawable/ic_baseline_medical_services_24"
+                                                app:tint="@color/amber_800" />
+
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/spacing_middle"
+                                            android:text="Daftar"
+                                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
+                                            android:textColor="@android:color/white"
+                                            app:fontFamily="sans-serif-medium" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/spacing_medium"
+                                            android:text="Obat"
+                                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                                            android:textColor="@color/grey_5" />
+
+                                    </LinearLayout>
+
+                                </androidx.cardview.widget.CardView>
+
+                                <View
+                                    android:layout_width="@dimen/spacing_smlarge"
+                                    android:layout_height="0dp" />
+
+                            </LinearLayout>
+
+                        </HorizontalScrollView>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing_large" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/spacing_smlarge"
+                        android:layout_marginRight="@dimen/spacing_smlarge"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Edukasi"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                            android:textColor="@color/grey_90"
+                            android:textStyle="bold"/>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Lihat semua"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
+                            android:textColor="@color/colorPrimary" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

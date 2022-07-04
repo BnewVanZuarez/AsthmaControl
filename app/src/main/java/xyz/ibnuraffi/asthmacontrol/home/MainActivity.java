@@ -1,11 +1,14 @@
 package xyz.ibnuraffi.asthmacontrol.home;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.NetworkResponse;
@@ -34,6 +37,15 @@ public class MainActivity extends AppCompatActivity {
     private TextView nama_lengkap;
     private TextView greeting;
 
+    private LinearLayout btn_daily_jurnal;
+    private LinearLayout btn_asthma_control;
+    private LinearLayout btn_peak_flow;
+    private LinearLayout btn_rencana_aksi_asthma;
+    private LinearLayout btn_tanya_jawab;
+    private LinearLayout btn_daftar_obat;
+
+    private TextView semua_edukasi;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +57,59 @@ public class MainActivity extends AppCompatActivity {
         root_layout = findViewById(R.id.root_layout);
         nama_lengkap = findViewById(R.id.nama_lengkap);
         greeting = findViewById(R.id.greeting);
+
+        btn_daily_jurnal = findViewById(R.id.btn_daily_jurnal);
+        btn_asthma_control = findViewById(R.id.btn_asthma_control);
+        btn_peak_flow = findViewById(R.id.btn_peak_flow);
+        btn_rencana_aksi_asthma = findViewById(R.id.btn_rencana_aksi_asthma);
+        btn_tanya_jawab = findViewById(R.id.btn_tanya_jawab);
+        btn_daftar_obat = findViewById(R.id.btn_daftar_obat);
+
+        semua_edukasi = findViewById(R.id.semua_edukasi);
+
+        btn_daily_jurnal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                funct.notifikasiDismisable(root_layout, "Daily Jurnal");
+            }
+        });
+        btn_asthma_control.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                funct.notifikasiDismisable(root_layout, "Asthma Control");
+            }
+        });
+        btn_peak_flow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                funct.notifikasiDismisable(root_layout, "Peak Flow");
+            }
+        });
+        btn_rencana_aksi_asthma.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                funct.notifikasiDismisable(root_layout, "Rencana Aksi Asthma");
+            }
+        });
+        btn_tanya_jawab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                funct.notifikasiDismisable(root_layout, "Tanya Jawab");
+            }
+        });
+        btn_daftar_obat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                funct.notifikasiDismisable(root_layout, "Daftar Obat");
+            }
+        });
+
+        semua_edukasi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                funct.notifikasiDismisable(root_layout, "Lihat Semua Edukasi");
+            }
+        });
 
         cekLogin(session.getEmail(), session.getHash());
     }

@@ -24,7 +24,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="145dp"
                     android:background="@drawable/shape_round_corner2" />
 
                 <LinearLayout
@@ -32,16 +32,45 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing_xxxlarge"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/spacing_large"
+                        android:paddingRight="@dimen/spacing_large">
+
+                        <ImageView
+                            android:id="@+id/btn_profile"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            app:srcCompat="@drawable/ic_baseline_account_circle_24"
+                            app:tint="@android:color/white" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <ImageView
+                            android:id="@+id/btn_logout"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            app:srcCompat="@drawable/ic_baseline_exit_to_app_24"
+                            app:tint="@android:color/white" />
+
+                    </LinearLayout>
+
                     <TextView
                         android:id="@+id/nama_lengkap"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/spacing_mlarge"
-                        android:layout_marginTop="@dimen/spacing_large"
+                        android:layout_marginTop="@dimen/spacing_medium"
                         android:text="@string/LOADING"
                         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                         android:textColor="@color/white"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/greeting"
@@ -51,14 +80,14 @@
                         android:text="Selamat Datang"
                         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                         android:textColor="@color/white"
-                        android:textStyle="normal"/>
+                        android:textStyle="normal" />
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
                         app:srcCompat="@drawable/ic_baseline_more_horiz_24"
-                        app:tint="@color/white"
-                        android:layout_gravity="center_horizontal"/>
+                        app:tint="@color/white" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -68,7 +97,7 @@
                         android:text="@string/app_name"
                         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                         android:textColor="@color/grey_90"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <HorizontalScrollView
                         android:layout_width="wrap_content"
@@ -503,7 +532,7 @@
                             android:text="Edukasi"
                             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                             android:textColor="@color/grey_90"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold" />
 
                         <View
                             android:layout_width="0dp"
@@ -519,6 +548,23 @@
                             android:textColor="@color/colorPrimary" />
 
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/spacing_xsmall" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/spacing_large"
+                        android:layout_marginTop="@dimen/spacing_middle"
+                        android:layout_marginRight="@dimen/spacing_large"
+                        android:orientation="vertical"
+                        android:scrollbars="vertical"
+                        tools:listitem="@layout/activity_main_edukasi_row" />
 
                 </LinearLayout>
 

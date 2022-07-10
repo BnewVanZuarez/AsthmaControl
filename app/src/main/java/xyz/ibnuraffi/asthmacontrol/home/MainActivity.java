@@ -3,11 +3,15 @@ package xyz.ibnuraffi.asthmacontrol.home;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,21 +23,28 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 import xyz.ibnuraffi.asthmacontrol.R;
+import xyz.ibnuraffi.asthmacontrol.dailyjurnal.DailyJurnal;
 import xyz.ibnuraffi.asthmacontrol.utils.AppController;
 import xyz.ibnuraffi.asthmacontrol.utils.Funct;
 import xyz.ibnuraffi.asthmacontrol.utils.Session;
+import xyz.ibnuraffi.asthmacontrol.webview.WebView;
 
 public class MainActivity extends AppCompatActivity {
 
     private Funct funct;
     private Session session;
     private CoordinatorLayout root_layout;
+
+    private ImageView btn_profile;
+    private ImageView btn_logout;
     private TextView nama_lengkap;
     private TextView greeting;
 
@@ -45,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout btn_daftar_obat;
 
     private TextView semua_edukasi;
+    public RecyclerView rv_view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         session = new Session(this);
 
         root_layout = findViewById(R.id.root_layout);
+        btn_profile = findViewById(R.id.btn_profile);
+        btn_logout = findViewById(R.id.btn_logout);
         nama_lengkap = findViewById(R.id.nama_lengkap);
         greeting = findViewById(R.id.greeting);
 
@@ -67,10 +81,28 @@ public class MainActivity extends AppCompatActivity {
 
         semua_edukasi = findViewById(R.id.semua_edukasi);
 
+        rv_view = findViewById(R.id.rv_view);
+        rv_view.setHasFixedSize(false);
+        rv_view.setNestedScrollingEnabled(true);
+
+        btn_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                funct.notifikasiDismisable(root_layout, "Profile");
+            }
+        });
+        btn_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                funct.logout();
+            }
+        });
         btn_daily_jurnal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                funct.notifikasiDismisable(root_layout, "Daily Jurnal");
+                //funct.notifikasiDismisable(root_layout, "Daily Jurnal");
+                Intent intent = new Intent(MainActivity.this, DailyJurnal.class);
+                startActivity(intent);
             }
         });
         btn_asthma_control.setOnClickListener(new View.OnClickListener() {
@@ -139,18 +171,41 @@ public class MainActivity extends AppCompatActivity {
                             if(status) {
                                 JSONObject data = new JSONObject(response.getString("data"));
                                 JSONObject info = new JSONObject(data.getString("info"));
-                                JSONObject login_data = new JSONObject(data.getString("login_data"));
 
                                 String error = info.getString("error");
                                 String detail = info.getString("detail");
                                 String link = info.getString("link");
                                 Boolean login = data.getBoolean("login");
 
-                                nama_lengkap.setText("Hi, "+login_data.getString("nama_lengkap"));
-                                greeting.setText(data.getString("greeting"));
+                                if(error.equals("1")) {
+                                    if (login){
 
-                                if(!login) {
-                                    funct.logout();
+                                        JSONObject login_data = new JSONObject(data.getString("login_data"));
+                                        JSONArray edukasi_content = new JSONArray(data.getString("edukasi"));
+
+                                        nama_lengkap.setText("Hi, "+login_data.getString("nama_lengkap"));
+                                        greeting.setText(data.getString("greeting"));
+
+                                        //ArrayList<BeritaModel> array = BeritaModel.fromJson(data.optJSONArray("slider"));
+                                        ArrayList<MainActivityEdukasi> list = new ArrayList<>();
+                                        list.addAll(MainActivityEdukasiModel.fromJson(edukasi_content));
+                                        rv_view.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL,false));
+                                        MainActivityEdukasiAdapter homeBeritaAdapter = new MainActivityEdukasiAdapter(list);
+                                        rv_view.setAdapter(homeBeritaAdapter);
+                                        homeBeritaAdapter.setOnItemClickCallback(new MainActivityEdukasiAdapter.OnItemClickCallback() {
+                                            @Override
+                                            public void onItemClicked(MainActivityEdukasi data) {
+                                                String slug = data.getSlug();
+                                                Intent intent = new Intent(MainActivity.this, WebView.class);
+                                                intent.putExtra("url", getResources().getString(R.string.webview) + "index.php?pages=edukasi&sub_page=depan&slug="+slug);
+                                                intent.putExtra("judul", "Edukasi");
+                                                startActivity(intent);
+                                            }
+                                        });
+
+                                    }else{
+                                        funct.logout();
+                                    }
                                 }else if(error.equals("2")) {
                                     funct.notifikasiShow(detail, link);
                                 }

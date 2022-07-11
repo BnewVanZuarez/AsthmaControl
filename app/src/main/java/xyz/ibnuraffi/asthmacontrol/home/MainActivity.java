@@ -32,6 +32,7 @@ import java.util.ArrayList;
 
 import xyz.ibnuraffi.asthmacontrol.R;
 import xyz.ibnuraffi.asthmacontrol.dailyjurnal.DailyJurnal;
+import xyz.ibnuraffi.asthmacontrol.edukasi.Edukasi;
 import xyz.ibnuraffi.asthmacontrol.utils.AppController;
 import xyz.ibnuraffi.asthmacontrol.utils.Funct;
 import xyz.ibnuraffi.asthmacontrol.utils.Session;
@@ -139,7 +140,8 @@ public class MainActivity extends AppCompatActivity {
         semua_edukasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                funct.notifikasiDismisable(root_layout, "Lihat Semua Edukasi");
+                Intent intent = new Intent(MainActivity.this, Edukasi.class);
+                startActivity(intent);
             }
         });
 

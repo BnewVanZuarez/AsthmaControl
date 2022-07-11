@@ -18,6 +18,9 @@
         android:theme="@style/BaseTheme.Material"
         tools:targetApi="31">
         <activity
+            android:name=".edukasi.Edukasi"
+            android:exported="false" />
+        <activity
             android:name=".webview.WebView"
             android:exported="false" />
         <activity

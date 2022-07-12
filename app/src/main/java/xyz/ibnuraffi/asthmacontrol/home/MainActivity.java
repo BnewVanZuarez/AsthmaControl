@@ -31,6 +31,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import xyz.ibnuraffi.asthmacontrol.R;
+import xyz.ibnuraffi.asthmacontrol.daftarobat.DaftarObat;
 import xyz.ibnuraffi.asthmacontrol.dailyjurnal.DailyJurnal;
 import xyz.ibnuraffi.asthmacontrol.edukasi.Edukasi;
 import xyz.ibnuraffi.asthmacontrol.utils.AppController;
@@ -133,7 +134,8 @@ public class MainActivity extends AppCompatActivity {
         btn_daftar_obat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                funct.notifikasiDismisable(root_layout, "Daftar Obat");
+                Intent intent = new Intent(MainActivity.this, DaftarObat.class);
+                startActivity(intent);
             }
         });
 

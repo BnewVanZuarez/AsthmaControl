@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".dailyjurnal.DailyJurnal"
+    tools:context=".daftarobat.DaftarObat"
     android:focusableInTouchMode="true">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -41,7 +41,7 @@
                     android:id="@+id/list_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:listitem="@layout/daftar_obat_row" />
+                    tools:listitem="@layout/daily_jurnal_row" />
 
             </RelativeLayout>
 

@@ -74,6 +74,12 @@ public class Edukasi extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        daftarEdukasi(session.getEmail(), session.getHash(), 0, 50);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.navigation, menu);

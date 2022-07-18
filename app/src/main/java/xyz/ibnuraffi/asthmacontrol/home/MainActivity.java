@@ -31,9 +31,11 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import xyz.ibnuraffi.asthmacontrol.R;
+import xyz.ibnuraffi.asthmacontrol.control.AsthmaControl;
 import xyz.ibnuraffi.asthmacontrol.daftarobat.DaftarObat;
 import xyz.ibnuraffi.asthmacontrol.dailyjurnal.DailyJurnal;
 import xyz.ibnuraffi.asthmacontrol.edukasi.Edukasi;
+import xyz.ibnuraffi.asthmacontrol.tanyajawab.TanyaJawab;
 import xyz.ibnuraffi.asthmacontrol.utils.AppController;
 import xyz.ibnuraffi.asthmacontrol.utils.Funct;
 import xyz.ibnuraffi.asthmacontrol.utils.Session;
@@ -110,7 +112,8 @@ public class MainActivity extends AppCompatActivity {
         btn_asthma_control.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                funct.notifikasiDismisable(root_layout, "Asthma Control");
+                Intent intent = new Intent(MainActivity.this, AsthmaControl.class);
+                startActivity(intent);
             }
         });
         btn_peak_flow.setOnClickListener(new View.OnClickListener() {
@@ -128,7 +131,8 @@ public class MainActivity extends AppCompatActivity {
         btn_tanya_jawab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                funct.notifikasiDismisable(root_layout, "Tanya Jawab");
+                Intent intent = new Intent(MainActivity.this, TanyaJawab.class);
+                startActivity(intent);
             }
         });
         btn_daftar_obat.setOnClickListener(new View.OnClickListener() {

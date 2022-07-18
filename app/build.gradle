@@ -50,5 +50,7 @@ dependencies {
     implementation 'com.github.f0ris.sweetalert:library:1.6.2'
     // https://mvnrepository.com/artifact/com.mikhaellopez/circularimageview
     implementation 'com.mikhaellopez:circularimageview:3.0.2'
+    // https://mvnrepository.com/artifact/com.github.PhilJay/MPAndroidChart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
 }

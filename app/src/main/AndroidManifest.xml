@@ -18,6 +18,15 @@
         android:theme="@style/BaseTheme.Material"
         tools:targetApi="31">
         <activity
+            android:name=".control.AsthmaControl"
+            android:exported="false" />
+        <activity
+            android:name=".tanyajawab.TanyaJawabTambah"
+            android:exported="false" />
+        <activity
+            android:name=".tanyajawab.TanyaJawab"
+            android:exported="false" />
+        <activity
             android:name=".daftarobat.DaftarObatTambah"
             android:exported="false" />
         <activity

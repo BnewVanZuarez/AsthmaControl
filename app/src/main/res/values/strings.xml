@@ -4,6 +4,11 @@
     <string name="server">http://192.168.8.104/AsthmaControlApi/api/</string>
     <string name="webview">http://192.168.8.104/AsthmaControlApi/webview/</string>
     <string name="loading">loading..</string>
+    <string name="pertanyaan_1">Dalam 4 minggu terakhir seberapa sering asma Anda mengganggu Anda untuk melakukan pekerjaan sehari-hari di kantor, di sekolah atau di rumah?</string>
+    <string name="pertanyaan_2">Dalam 4 minggu terakhir seberapa seringkah Anda mengalami sesak napas?</string>
+    <string name="pertanyaan_3">Dalam 4 minggu terakhir seberapa sering gejala asma (bengek, batuk-batuk, sesak napas, nyeri dada atau rasa tertekan di dada) menyebabkan Anda terbangun di malam hari atau lebih awal dari basanya?</string>
+    <string name="pertanyaan_4">Dalam 4 minggu terakhir seberapa sering Anda menggunakan obat semprot atau obat oral (tablet/sirup) untuk melegakan pernapasan?</string>
+    <string name="pertanyaan_5">Bagaimana Anda sendiri menilai tingkat kontrol asma Anda dalam 4 minggu terakhir?</string>
     <!--<string name="server">https://eso.mtghozali.com/api/</string>-->
     <!--<string name="webview">https://eso.mtghozali.com/webview/</string>-->
 </resources>

@@ -10,13 +10,14 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="400dp"
         android:background="@drawable/shape_round_corner" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,17 +35,13 @@
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="25dp">
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/spacing_large" />
-
                     <ImageView
                         android:layout_width="155dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|top"
                         android:layout_margin="@dimen/spacing_xxxlarge"
                         android:adjustViewBounds="true"
-                        android:paddingTop="50dp"
+                        android:paddingTop="25dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/dokter" />
 
@@ -69,7 +66,7 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/spacing_xxxlarge" />
+                        android:layout_height="@dimen/spacing_xxlarge" />
 
                     <Button
                         android:id="@+id/btn_tutup"

@@ -26,6 +26,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 import xyz.ibnuraffi.asthmacontrol.R;
 import xyz.ibnuraffi.asthmacontrol.utils.AppController;
@@ -42,6 +43,8 @@ public class DaftarObatTambah extends AppCompatActivity {
     private TextInputEditText input_nama;
     private TextInputEditText input_dosis;
     private MaterialButton btn_simpan;
+
+    private String obat_id = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,12 +64,22 @@ public class DaftarObatTambah extends AppCompatActivity {
         input_dosis = findViewById(R.id.input_dosis);
         btn_simpan = findViewById(R.id.btn_simpan);
 
+        Bundle bundle = getIntent().getExtras();
+        if(bundle != null) {
+            obat_id = bundle.getString("obat_id");
+            detailObat(session.getEmail(), session.getHash(), obat_id);
+        }
+
         btn_simpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String nm = input_nama.getText().toString().trim();
                 String ds = input_dosis.getText().toString().trim();
-                inputObat(session.getEmail(), session.getHash(), nm, ds);
+                if (obat_id.isEmpty()){
+                    inputObat(session.getEmail(), session.getHash(), nm, ds);
+                }else{
+                    updateObat(session.getEmail(), session.getHash(), nm, ds, obat_id);
+                }
             }
         });
     }
@@ -132,8 +145,170 @@ public class DaftarObatTambah extends AppCompatActivity {
                                 if(!TextUtils.isEmpty(detail)) {
                                     funct.notifikasiDismisable(root_layout,detail);
                                 }
-                                input_nama.setText("");
-                                input_dosis.setText("");
+                                onBackPressed();
+
+                            }else {
+                                funct.logout();
+                            }
+
+                        }else if(error.equals("2")) {
+                            funct.notifikasiShow(detail, link);
+                        }
+
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                funct.loadingHide();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError e) {
+                e.printStackTrace();
+                funct.loadingHide();
+                funct.notifikasiDismisable(root_layout,"Pastikan internet anda aktif dan coba kembali");
+            }
+        });
+//        {
+//            @Override
+//            protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
+//                try {
+//                    String jsonString = new String(response.data, HttpHeaderParser.parseCharset(response.headers, PROTOCOL_CHARSET));
+//                    Log.d("Input Obat ", jsonString);
+//                    System.out.println("Input Obat " + jsonString);
+//                    return Response.success(new JSONObject(jsonString), HttpHeaderParser.parseCacheHeaders(response));
+//                } catch (UnsupportedEncodingException e) {
+//                    return Response.error(new ParseError(e));
+//                } catch (JSONException je) {
+//                    return Response.error(new ParseError(je));
+//                }
+//            }
+//        };
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(jsonObjReq);
+    }
+
+    public void detailObat(final String email, final String hash, String obat){
+        funct.loadingShow();
+        JSONObject parram = new JSONObject();
+        try {
+            parram.put("aksi", "detail_obat");
+            parram.put("email", email);
+            parram.put("hash", hash);
+            parram.put("obat", obat);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, getResources().getString(R.string.server) + "daftar_obat/home.php", parram, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    Boolean status = response.getBoolean("status");
+
+                    if (status){
+
+                        JSONObject data = new JSONObject(response.getString("data"));
+                        JSONObject info = new JSONObject(data.getString("info"));
+
+                        String error = info.getString("error");
+                        String detail = info.getString("detail");
+                        String link = info.getString("link");
+                        Boolean login = data.getBoolean("login");
+
+                        if(error.equals("1")) {
+
+                            if (login){
+
+                                if(!TextUtils.isEmpty(detail)) {
+                                    funct.notifikasiDismisable(root_layout,detail);
+                                }
+                                JSONObject detailobat = new JSONObject(data.getString("obat"));
+                                String nm = detailobat.getString("nama_obat");
+                                String ds = detailobat.getString("dosis");
+                                input_nama.setText(nm);
+                                input_dosis.setText(ds);
+
+                            }else {
+                                funct.logout();
+                            }
+
+                        }else if(error.equals("2")) {
+                            funct.notifikasiShow(detail, link);
+                        }
+
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                funct.loadingHide();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError e) {
+                e.printStackTrace();
+                funct.loadingHide();
+                funct.notifikasiDismisable(root_layout,"Pastikan internet anda aktif dan coba kembali");
+            }
+        });
+//        {
+//            @Override
+//            protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
+//                try {
+//                    String jsonString = new String(response.data, HttpHeaderParser.parseCharset(response.headers, PROTOCOL_CHARSET));
+//                    Log.d("Detail Obat ", jsonString);
+//                    System.out.println("Detail Obat " + jsonString);
+//                    return Response.success(new JSONObject(jsonString), HttpHeaderParser.parseCacheHeaders(response));
+//                } catch (UnsupportedEncodingException e) {
+//                    return Response.error(new ParseError(e));
+//                } catch (JSONException je) {
+//                    return Response.error(new ParseError(je));
+//                }
+//            }
+//        };
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(jsonObjReq);
+    }
+
+    public void updateObat(final String email, final String hash, String nama_obat, String dosis, String obat){
+        funct.loadingShow();
+        JSONObject parram = new JSONObject();
+        try {
+            parram.put("aksi", "update_obat");
+            parram.put("email", email);
+            parram.put("hash", hash);
+            parram.put("nama_obat", nama_obat);
+            parram.put("dosis", dosis);
+            parram.put("obat", obat);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, getResources().getString(R.string.server) + "daftar_obat/home.php", parram, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    Boolean status = response.getBoolean("status");
+
+                    if (status){
+                        JSONObject data = new JSONObject(response.getString("data"));
+                        JSONObject info = new JSONObject(data.getString("info"));
+
+                        String error = info.getString("error");
+                        String detail = info.getString("detail");
+                        String link = info.getString("link");
+                        Boolean login = data.getBoolean("login");
+
+                        if(error.equals("1")) {
+
+                            if (login){
+
+                                if(!TextUtils.isEmpty(detail)) {
+                                    funct.notifikasiDismisable(root_layout,detail);
+                                }
+                                onBackPressed();
 
                             }else {
                                 funct.logout();
@@ -163,8 +338,8 @@ public class DaftarObatTambah extends AppCompatActivity {
             protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
                 try {
                     String jsonString = new String(response.data, HttpHeaderParser.parseCharset(response.headers, PROTOCOL_CHARSET));
-                    Log.d("Input Pasien ", jsonString);
-                    System.out.println("Input Pasien " + jsonString);
+                    Log.d("Update Obat ", jsonString);
+                    System.out.println("Update Obat " + jsonString);
                     return Response.success(new JSONObject(jsonString), HttpHeaderParser.parseCacheHeaders(response));
                 } catch (UnsupportedEncodingException e) {
                     return Response.error(new ParseError(e));

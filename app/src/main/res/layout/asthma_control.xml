@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:id="@+id/root_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -74,30 +75,35 @@
                             android:layout_marginBottom="@dimen/spacing_middle">
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/pertanyaan_1_a"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Selalu"
                                 app:buttonTint="@color/colorPrimary"/>
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/pertanyaan_1_b"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Sering"
                                 app:buttonTint="@color/colorPrimary"/>
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/pertanyaan_1_c"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Kadang-kadang"
                                 app:buttonTint="@color/colorPrimary"/>
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/pertanyaan_1_d"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Jarang"
                                 app:buttonTint="@color/colorPrimary"/>
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/pertanyaan_1_e"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Tidak Pernah"
@@ -143,30 +149,35 @@
                             android:layout_marginBottom="@dimen/spacing_middle">
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/pertanyaan_2_a"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Lebih dari 1 kali sehari"
                                 app:buttonTint="@color/colorPrimary"/>
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/pertanyaan_2_b"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Sekali sehari"
                                 app:buttonTint="@color/colorPrimary"/>
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/pertanyaan_2_c"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="3-6 kali seminggu"
                                 app:buttonTint="@color/colorPrimary"/>
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/pertanyaan_2_d"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="1-2 kali seminggu"
                                 app:buttonTint="@color/colorPrimary"/>
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/pertanyaan_2_e"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Tidak Pernah"
@@ -212,30 +223,35 @@
                             android:layout_marginBottom="@dimen/spacing_middle">
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/pertanyaan_3_a"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="4 kali atau lebih dalam seminggu"
                                 app:buttonTint="@color/colorPrimary"/>
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/pertanyaan_3_b"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="2-3 kali seminggu"
                                 app:buttonTint="@color/colorPrimary"/>
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/pertanyaan_3_c"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Sekali seminggu"
                                 app:buttonTint="@color/colorPrimary"/>
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/pertanyaan_3_d"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="1-2 kali sebulan"
                                 app:buttonTint="@color/colorPrimary"/>
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/pertanyaan_3_e"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Tidak pernah"
@@ -281,30 +297,35 @@
                             android:layout_marginBottom="@dimen/spacing_middle">
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/pertanyaan_4_a"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="3 kali atau lebih sehari"
                                 app:buttonTint="@color/colorPrimary"/>
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/pertanyaan_4_b"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="1-2 kali sehari"
                                 app:buttonTint="@color/colorPrimary"/>
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/pertanyaan_4_c"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="2-3 kali seminggu"
                                 app:buttonTint="@color/colorPrimary"/>
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/pertanyaan_4_d"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="1 kali seminggu atau kurang"
                                 app:buttonTint="@color/colorPrimary"/>
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/pertanyaan_4_e"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Tidak pernah"
@@ -350,30 +371,35 @@
                             android:layout_marginBottom="@dimen/spacing_middle">
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/pertanyaan_5_a"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Tidak terkontrol sama sekali"
                                 app:buttonTint="@color/colorPrimary"/>
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/pertanyaan_5_b"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Kurang terkontrol"
                                 app:buttonTint="@color/colorPrimary"/>
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/pertanyaan_5_c"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Cukup terkontrol"
                                 app:buttonTint="@color/colorPrimary"/>
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/pertanyaan_5_d"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Terkontrol dengan baik"
                                 app:buttonTint="@color/colorPrimary"/>
 
                             <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/pertanyaan_5_e"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Terkontrol sepenuhnya"
@@ -407,7 +433,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="55dp"
                             android:background="@drawable/btn_rounded_primary"
-                            android:text="MASUK"
+                            android:text="Hitung"
                             android:textAllCaps="false"
                             android:textColor="@android:color/white"
                             android:textStyle="bold" />

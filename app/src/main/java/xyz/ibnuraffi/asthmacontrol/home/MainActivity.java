@@ -35,6 +35,8 @@ import xyz.ibnuraffi.asthmacontrol.control.AsthmaControl;
 import xyz.ibnuraffi.asthmacontrol.daftarobat.DaftarObat;
 import xyz.ibnuraffi.asthmacontrol.dailyjurnal.DailyJurnal;
 import xyz.ibnuraffi.asthmacontrol.edukasi.Edukasi;
+import xyz.ibnuraffi.asthmacontrol.profile.Profile;
+import xyz.ibnuraffi.asthmacontrol.rumahsakit.RumahSakit;
 import xyz.ibnuraffi.asthmacontrol.tanyajawab.TanyaJawab;
 import xyz.ibnuraffi.asthmacontrol.utils.AppController;
 import xyz.ibnuraffi.asthmacontrol.utils.Funct;
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout btn_rencana_aksi_asthma;
     private LinearLayout btn_tanya_jawab;
     private LinearLayout btn_daftar_obat;
+    private LinearLayout btn_rumah_sakit;
 
     private TextView semua_edukasi;
     public RecyclerView rv_view;
@@ -82,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         btn_rencana_aksi_asthma = findViewById(R.id.btn_rencana_aksi_asthma);
         btn_tanya_jawab = findViewById(R.id.btn_tanya_jawab);
         btn_daftar_obat = findViewById(R.id.btn_daftar_obat);
+        btn_rumah_sakit = findViewById(R.id.btn_rumah_sakit);
 
         semua_edukasi = findViewById(R.id.semua_edukasi);
 
@@ -92,7 +96,8 @@ public class MainActivity extends AppCompatActivity {
         btn_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                funct.notifikasiDismisable(root_layout, "Profile");
+                Intent intent = new Intent(MainActivity.this, Profile.class);
+                startActivity(intent);
             }
         });
         btn_logout.setOnClickListener(new View.OnClickListener() {
@@ -142,6 +147,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        btn_rumah_sakit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, RumahSakit.class);
+                startActivity(intent);
+            }
+        });
 
         semua_edukasi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,6 +163,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        cekLogin(session.getEmail(), session.getHash());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         cekLogin(session.getEmail(), session.getHash());
     }
 

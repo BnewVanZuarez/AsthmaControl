@@ -58,7 +58,7 @@ public class DaftarObatTambah extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Tambah Obat");
+        getSupportActionBar().setTitle("Daftar Obat");
 
         input_nama = findViewById(R.id.input_nama);
         input_dosis = findViewById(R.id.input_dosis);

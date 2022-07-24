@@ -47,6 +47,9 @@
             android:name=".webview.WebView"
             android:exported="false" />
         <activity
+            android:name=".dailyjurnal.DailyJurnalGejala"
+            android:exported="false" />
+        <activity
             android:name=".dailyjurnal.DailyJurnalTambah"
             android:exported="false" />
         <activity

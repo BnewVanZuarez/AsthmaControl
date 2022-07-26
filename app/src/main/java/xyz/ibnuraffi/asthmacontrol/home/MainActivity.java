@@ -35,6 +35,7 @@ import xyz.ibnuraffi.asthmacontrol.control.AsthmaControl;
 import xyz.ibnuraffi.asthmacontrol.daftarobat.DaftarObat;
 import xyz.ibnuraffi.asthmacontrol.dailyjurnal.DailyJurnal;
 import xyz.ibnuraffi.asthmacontrol.edukasi.Edukasi;
+import xyz.ibnuraffi.asthmacontrol.peakflow.PeakFlow;
 import xyz.ibnuraffi.asthmacontrol.profile.Profile;
 import xyz.ibnuraffi.asthmacontrol.rumahsakit.RumahSakit;
 import xyz.ibnuraffi.asthmacontrol.tanyajawab.TanyaJawab;
@@ -124,7 +125,8 @@ public class MainActivity extends AppCompatActivity {
         btn_peak_flow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                funct.notifikasiDismisable(root_layout, "Peak Flow");
+                Intent intent = new Intent(MainActivity.this, PeakFlow.class);
+                startActivity(intent);
             }
         });
         btn_rencana_aksi_asthma.setOnClickListener(new View.OnClickListener() {

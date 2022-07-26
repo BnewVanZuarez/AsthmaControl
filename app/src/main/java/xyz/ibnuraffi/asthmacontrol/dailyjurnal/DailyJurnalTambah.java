@@ -7,6 +7,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +19,14 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.material.button.MaterialButton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,6 +34,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import xyz.ibnuraffi.asthmacontrol.R;
+import xyz.ibnuraffi.asthmacontrol.utils.AppController;
 import xyz.ibnuraffi.asthmacontrol.utils.Funct;
 import xyz.ibnuraffi.asthmacontrol.utils.Session;
 import xyz.ibnuraffi.asthmacontrol.utils.SpinnerModel;
@@ -227,7 +236,8 @@ public class DailyJurnalTambah extends AppCompatActivity {
 
                 String nc = notes_comment_text.getText().toString();
 
-                funct.notifikasiToastShow(dn+"\n"+tr+"\n"+pr+"\n"+md+"\n"+rg+"\n"+rp+"\n"+pt+"\n"+"\n"+nm+"\n"+ll+"\n"+at+"\n"+da+"\n"+ri+"\n"+"\n"+nc+"\n");
+                //funct.notifikasiToastShow(dn+"\n"+tr+"\n"+pr+"\n"+md+"\n"+rg+"\n"+gejala_value+"\n"+rp+"\n"+pt+"\n"+"\n"+nm+"\n"+ll+"\n"+at+"\n"+da+"\n"+ri+"\n"+"\n"+nc+"\n");
+                inputDailyJurnal(session.getEmail(),session.getHash(),dn,tr,pr,md,rg,gejala_value,rp,pt,nm,ll,at,da,ri,nc);
             }
         });
     }
@@ -267,4 +277,96 @@ public class DailyJurnalTambah extends AppCompatActivity {
             }
         }
     }
+
+    public void inputDailyJurnal(final String email,final String hash,String tanggal,String rate_today,String rate_pain,String mood_today,String gejala,String gejala_value,String paparan,String paparan_alergen,String nafsu_makan,String kelelahan,String aktivitas,String aktivitas_durasi,String aktivitas_intensitas,String notes){
+        funct.loadingShow();
+        JSONObject parram = new JSONObject();
+        try {
+            parram.put("aksi", "input_daily");
+            parram.put("email", email);
+            parram.put("hash", hash);
+            parram.put("tanggal", tanggal);
+            parram.put("rate_today", rate_today);
+            parram.put("rate_pain", rate_pain);
+            parram.put("mood_today", mood_today);
+            parram.put("gejala", gejala);
+            parram.put("gejala_value", gejala_value);
+            parram.put("paparan", paparan);
+            parram.put("paparan_alergen", paparan_alergen);
+            parram.put("nafsu_makan", nafsu_makan);
+            parram.put("kelelahan", kelelahan);
+            parram.put("aktivitas", aktivitas);
+            parram.put("aktivitas_durasi", aktivitas_durasi);
+            parram.put("aktivitas_intensitas", aktivitas_intensitas);
+            parram.put("notes", notes);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, getResources().getString(R.string.server) + "daily_jurnal/home.php", parram, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    Boolean status = response.getBoolean("status");
+
+                    if (status){
+                        JSONObject data = new JSONObject(response.getString("data"));
+                        JSONObject info = new JSONObject(data.getString("info"));
+
+                        String error = info.getString("error");
+                        String detail = info.getString("detail");
+                        String link = info.getString("link");
+                        Boolean login = data.getBoolean("login");
+
+                        if(error.equals("1")) {
+
+                            if (login){
+
+                                if(!TextUtils.isEmpty(detail)) {
+                                    funct.notifikasiDismisable(root_layout,detail);
+                                }
+                                onBackPressed();
+
+                            }else {
+                                funct.logout();
+                            }
+
+                        }else if(error.equals("2")) {
+                            funct.notifikasiShow(detail, link);
+                        }
+
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                funct.loadingHide();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError e) {
+                e.printStackTrace();
+                funct.loadingHide();
+                funct.notifikasiDismisable(root_layout,"Pastikan internet anda aktif dan coba kembali");
+            }
+        });
+//        {
+//            @Override
+//            protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
+//                try {
+//                    String jsonString = new String(response.data, HttpHeaderParser.parseCharset(response.headers, PROTOCOL_CHARSET));
+//                    Log.d("Input Obat ", jsonString);
+//                    System.out.println("Input Obat " + jsonString);
+//                    return Response.success(new JSONObject(jsonString), HttpHeaderParser.parseCacheHeaders(response));
+//                } catch (UnsupportedEncodingException e) {
+//                    return Response.error(new ParseError(e));
+//                } catch (JSONException je) {
+//                    return Response.error(new ParseError(je));
+//                }
+//            }
+//        };
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(jsonObjReq);
+    }
+
 }

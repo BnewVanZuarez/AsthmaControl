@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_data"
+        android:icon="@drawable/ic_baseline_list_alt_24"
+        android:title="Data" />
+
+    <item
+        android:id="@+id/nav_chart"
+        android:icon="@drawable/ic_baseline_insert_chart_outlined_24"
+        android:title="Chart" />
+
+</menu>

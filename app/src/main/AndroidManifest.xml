@@ -20,6 +20,12 @@
         android:theme="@style/BaseTheme.Material"
         tools:targetApi="31">
         <activity
+            android:name=".peakflow.PeakFlowTambah"
+            android:exported="false" />
+        <activity
+            android:name=".peakflow.PeakFlow"
+            android:exported="false" />
+        <activity
             android:name=".profile.Profile"
             android:exported="false" />
         <activity

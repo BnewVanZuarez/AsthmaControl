@@ -31,11 +31,10 @@
                     android:format24Hour="HH:mm:ss a"
                     android:paddingVertical="@dimen/spacing_large"/>
 
-                <CalendarView
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/chart"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center|center_vertical"
-                    android:paddingVertical="@dimen/spacing_large"/>
+                    android:layout_height="match_parent" />
 
             </LinearLayout>
 

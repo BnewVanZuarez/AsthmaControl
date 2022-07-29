@@ -74,7 +74,7 @@
                         android:id="@+id/input_nilai"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="text"
+                        android:inputType="number"
                         android:maxLines="1" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -82,6 +82,57 @@
                 <View
                     android:layout_width="0dp"
                     android:layout_height="@dimen/spacing_smlarge" />
+
+                <RadioGroup
+                    android:id="@+id/group_warna"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/warna_merah"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingHorizontal="@dimen/spacing_medium"
+                        android:paddingVertical="@dimen/spacing_middle"
+                        android:text="Merah"
+                        app:buttonTint="@color/red_A700" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/warna_kuning"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingHorizontal="@dimen/spacing_medium"
+                        android:paddingVertical="@dimen/spacing_middle"
+                        android:text="Kuning"
+                        app:buttonTint="@color/yellow_A700" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/warna_hijau"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingHorizontal="@dimen/spacing_medium"
+                        android:paddingVertical="@dimen/spacing_middle"
+                        android:text="Hijau"
+                        app:buttonTint="@color/green_A700" />
+
+                </RadioGroup>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/spacing_smlarge" />
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:id="@+id/btn_simpan"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/spacing_xxxlarge"
+                    android:text="SIMPAN"
+                    app:icon="@drawable/ic_baseline_save_24"
+                    app:iconGravity="textStart" />
 
             </LinearLayout>
 

@@ -9,11 +9,25 @@ import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 import xyz.ibnuraffi.asthmacontrol.R;
+import xyz.ibnuraffi.asthmacontrol.daftarobat.DaftarObatAdapter;
+import xyz.ibnuraffi.asthmacontrol.daftarobat.DaftarObatModel;
+import xyz.ibnuraffi.asthmacontrol.utils.AppController;
+import xyz.ibnuraffi.asthmacontrol.utils.EndlessScrollListener;
 import xyz.ibnuraffi.asthmacontrol.utils.Funct;
 import xyz.ibnuraffi.asthmacontrol.utils.Session;
 
@@ -32,6 +46,9 @@ public class PeakFlow extends AppCompatActivity {
     // Fragmen Satu
     public CoordinatorLayout peak_flow_fragment_1_root_layout;
     public ExtendedFloatingActionButton peak_flow_fragment_1_tambah;
+    public ListView peak_flow_fragment_1_list_view;
+    public PeakFlowAdapter peak_flow_fragment_1_adapter;
+    public ArrayList<PeakFlowModel> peak_flow_fragment_1_model = new ArrayList<>();
 
     // Fragmen Dua
     public CoordinatorLayout peak_flow_fragment_2_root_layout;
@@ -81,10 +98,17 @@ public class PeakFlow extends AppCompatActivity {
             public void onPageSelected(int position) {
                 nav_pager.getMenu().getItem(position).setChecked(true);
                 if (position == 0) {
+                    daftarPeakFlowGetData();
                 }else if (position == 1){
                 }
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        daftarPeakFlowGetData();
     }
 
     @Override
@@ -108,4 +132,145 @@ public class PeakFlow extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    public void daftarPeakFlowGetData(){
+        daftarPeakFlow(session.getEmail(), session.getHash(), 0, 50);
+    }
+
+    public void daftarPeakFlow(final String email, final String hash, Integer startpoint, final int limit){
+        if (startpoint == 0){
+            funct.loadingShow();
+            JSONObject parram = new JSONObject();
+            try {
+                parram.put("aksi", "peak_flow");
+                parram.put("email", email);
+                parram.put("hash", hash);
+                parram.put("startpoint", startpoint);
+                parram.put("limit", limit);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, getResources().getString(R.string.server) + "peak_flow/home.php", parram, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        Boolean status = response.getBoolean("status");
+
+                        if (status){
+                            JSONObject data = new JSONObject(response.getString("data"));
+                            JSONObject info = new JSONObject(data.getString("info"));
+
+                            String error = info.getString("error");
+                            String detail = info.getString("detail");
+                            String link = info.getString("link");
+                            Boolean login = data.getBoolean("login");
+
+                            if(error.equals("1")) {
+                                if (login){
+
+                                    peak_flow_fragment_1_model.clear();
+                                    peak_flow_fragment_1_model.addAll(PeakFlowModel.fromJson(data.optJSONArray("peakflow")));
+                                    peak_flow_fragment_1_adapter.notifyDataSetChanged();
+
+                                    final int info_num_rows = data.getInt("peakflow_num_rows");
+                                    peak_flow_fragment_1_list_view.setOnScrollListener(new EndlessScrollListener(){
+                                        @Override
+                                        public boolean onLoadMore(int page, int totalItemsCount) {
+                                            if (totalItemsCount < info_num_rows) {
+                                                daftarPeakFlow(email, hash, (page - 1) * limit, limit);
+                                                return true;
+                                            }
+                                            return false;
+                                        }
+                                    });
+
+                                }else{
+                                    funct.logout();
+                                }
+
+                            }else if(error.equals("2")) {
+                                funct.notifikasiShow(detail, link);
+                            }
+
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    funct.loadingHide();
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError e) {
+                    e.printStackTrace();
+                    funct.loadingHide();
+                    funct.notifikasiDismisable(peak_flow_fragment_1_root_layout,"Pastikan internet anda aktif dan coba kembali");
+                }
+            });
+
+            // Adding request to request queue
+            AppController.getInstance().addToRequestQueue(jsonObjReq);
+
+        }else{
+
+            funct.loadingShow();
+            JSONObject parram = new JSONObject();
+            try {
+                parram.put("aksi", "peak_flow");
+                parram.put("email", email);
+                parram.put("hash", hash);
+                parram.put("startpoint", startpoint);
+                parram.put("limit", limit);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, getResources().getString(R.string.server) + "peak_flow/home.php", parram, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        Boolean status = response.getBoolean("status");
+
+                        if (status){
+                            JSONObject data = new JSONObject(response.getString("data"));
+                            JSONObject info = new JSONObject(data.getString("info"));
+
+                            String error = info.getString("error");
+                            String detail = info.getString("detail");
+                            String link = info.getString("link");
+                            Boolean login = data.getBoolean("login");
+
+                            if(error.equals("1")) {
+                                if (login){
+
+                                    peak_flow_fragment_1_model.addAll(PeakFlowModel.fromJson(data.optJSONArray("peakflow")));
+                                    peak_flow_fragment_1_adapter.notifyDataSetChanged();
+
+                                }else{
+                                    funct.logout();
+                                }
+
+                            }else if(error.equals("2")) {
+                                funct.notifikasiShow(detail, link);
+                            }
+
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    funct.loadingHide();
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError e) {
+                    e.printStackTrace();
+                    funct.loadingHide();
+                    funct.notifikasiDismisable(peak_flow_fragment_1_root_layout,"Pastikan internet anda aktif dan coba kembali");
+                }
+            });
+
+            // Adding request to request queue
+            AppController.getInstance().addToRequestQueue(jsonObjReq);
+        }
+    }
+
 }

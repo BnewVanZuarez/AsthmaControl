@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 
 import xyz.ibnuraffi.asthmacontrol.R;
+import xyz.ibnuraffi.asthmacontrol.daftarobat.DaftarObat;
+import xyz.ibnuraffi.asthmacontrol.daftarobat.DaftarObatAdapter;
 import xyz.ibnuraffi.asthmacontrol.home.MainActivity;
 import xyz.ibnuraffi.asthmacontrol.profile.Profile;
 import xyz.ibnuraffi.asthmacontrol.utils.Funct;
@@ -44,6 +46,10 @@ public class PeakFlowFragment1 extends Fragment {
         peakFlow = (PeakFlow) getActivity();
         peakFlow.peak_flow_fragment_1_root_layout = view.findViewById(R.id.root_layout);
         peakFlow.peak_flow_fragment_1_tambah = view.findViewById(R.id.tambah);
+        peakFlow.peak_flow_fragment_1_list_view = view.findViewById(R.id.list_view);
+        peakFlow.peak_flow_fragment_1_adapter = new PeakFlowAdapter(getContext(), peakFlow.peak_flow_fragment_1_model);
+        peakFlow.peak_flow_fragment_1_list_view.setAdapter(peakFlow.peak_flow_fragment_1_adapter);
+
         peakFlow.peak_flow_fragment_1_tambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,6 +57,8 @@ public class PeakFlowFragment1 extends Fragment {
                 startActivity(intent);
             }
         });
+
+        peakFlow.daftarPeakFlowGetData();
 
         return view;
     }

@@ -12,6 +12,7 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven { url 'https://jitpack.io' }
+        maven { url "https://repo.sendbird.com/public/maven" }
     }
 }
 rootProject.name = "AsthmaControl"

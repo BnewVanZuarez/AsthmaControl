@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,15 +20,19 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.material.button.MaterialButton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -354,8 +359,8 @@ public class DailyJurnalTambah extends AppCompatActivity {
 //            protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
 //                try {
 //                    String jsonString = new String(response.data, HttpHeaderParser.parseCharset(response.headers, PROTOCOL_CHARSET));
-//                    Log.d("Input Obat ", jsonString);
-//                    System.out.println("Input Obat " + jsonString);
+//                    Log.d("Input Daily Jurnal ", jsonString);
+//                    System.out.println("Input Daily Jurnal " + jsonString);
 //                    return Response.success(new JSONObject(jsonString), HttpHeaderParser.parseCacheHeaders(response));
 //                } catch (UnsupportedEncodingException e) {
 //                    return Response.error(new ParseError(e));

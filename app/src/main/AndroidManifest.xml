@@ -35,6 +35,9 @@
             android:name=".control.AsthmaControl"
             android:exported="false" />
         <activity
+            android:name=".tanyajawab.TanyaJawabChats"
+            android:exported="false" />
+        <activity
             android:name=".tanyajawab.TanyaJawabTambah"
             android:exported="false" />
         <activity

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -118,6 +119,10 @@ public class TanyaJawabTambah extends AppCompatActivity {
                                 if(!TextUtils.isEmpty(detail)) {
                                     funct.notifikasiDismisable(root_layout,detail+" - "+tiket_id);
                                 }
+                                Intent intent = new Intent(TanyaJawabTambah.this, TanyaJawabChats.class);
+                                intent.putExtra("tiket_id", tiket_id);
+                                startActivity(intent);
+
                             }else {
                                 funct.logout();
                             }

@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.viewpager.widget.ViewPager;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,13 +16,19 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import xyz.ibnuraffi.asthmacontrol.R;
 import xyz.ibnuraffi.asthmacontrol.daftarobat.DaftarObatAdapter;
@@ -52,6 +59,8 @@ public class PeakFlow extends AppCompatActivity {
 
     // Fragmen Dua
     public CoordinatorLayout peak_flow_fragment_2_root_layout;
+    public BarChart peak_flow_fragment_2_chart;
+    public BarData peak_flow_fragment_2_chartData = new BarData();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +109,7 @@ public class PeakFlow extends AppCompatActivity {
                 if (position == 0) {
                     daftarPeakFlowGetData();
                 }else if (position == 1){
+                    grafikPeakFlowGetData();
                 }
             }
         });
@@ -132,6 +142,7 @@ public class PeakFlow extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     public void daftarPeakFlowGetData(){
         daftarPeakFlow(session.getEmail(), session.getHash(), 0, 50);
     }
@@ -271,6 +282,98 @@ public class PeakFlow extends AppCompatActivity {
             // Adding request to request queue
             AppController.getInstance().addToRequestQueue(jsonObjReq);
         }
+    }
+
+    public void grafikPeakFlowGetData(){
+        grafikPeakFlow(session.getEmail(), session.getHash());
+    }
+
+    public void grafikPeakFlow(final String email, final String hash){
+        funct.loadingShow();
+        //reset list/data
+        peak_flow_fragment_2_chartData.clearValues();
+        peak_flow_fragment_2_chart.invalidate();
+        peak_flow_fragment_2_chart.clear();
+        JSONObject parram = new JSONObject();
+        try {
+            parram.put("aksi", "peak_flow_chart");
+            parram.put("email", email);
+            parram.put("hash", hash);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, getResources().getString(R.string.server) + "peak_flow/home.php", parram, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    Boolean status = response.getBoolean("status");
+
+                    if (status){
+                        JSONObject data = new JSONObject(response.getString("data"));
+                        JSONObject info = new JSONObject(data.getString("info"));
+
+                        String error = info.getString("error");
+                        String detail = info.getString("detail");
+                        String link = info.getString("link");
+                        Boolean login = data.getBoolean("login");
+
+                        if(error.equals("1")) {
+                            if (login){
+
+                                JSONArray chart = new JSONArray(data.getString("chart"));
+                                if(chart.length() > 0) {
+                                    for (int i = 0; i < chart.length(); i++) {
+
+                                        JSONObject row = new JSONObject(chart.getString(i));
+                                        String tanggal = row.getString("tanggal").toString().trim();
+                                        String warna = row.getString("warna").toString().trim();
+                                        final int nilai = row.getInt("nilai");
+                                        //System.out.println("Loopingdata " + nama + "-" + total + "-" + warna + "-" + max);
+
+                                        List<BarEntry> entries = new ArrayList<>();
+                                        entries.add(new BarEntry(i, nilai));
+                                        BarDataSet set = new BarDataSet(entries, tanggal);
+                                        if(warna.equalsIgnoreCase("1")) {
+                                            set.setColor(Color.RED);
+                                        }else if(warna.equalsIgnoreCase("2")) {
+                                            set.setColor(Color.YELLOW);
+                                        }else if(warna.equalsIgnoreCase("3")) {
+                                            set.setColor(Color.GREEN);
+                                        }
+                                        peak_flow_fragment_2_chartData.addDataSet(set);
+                                    }
+
+                                    peak_flow_fragment_2_chart.setData(peak_flow_fragment_2_chartData);
+                                    peak_flow_fragment_2_chart.setFitBars(true); // make the x-axis fit exactly all bars
+                                    peak_flow_fragment_2_chart.invalidate(); // refresh
+                                }
+
+                            }else{
+                                funct.logout();
+                            }
+
+                        }else if(error.equals("2")) {
+                            funct.notifikasiShow(detail, link);
+                        }
+
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                funct.loadingHide();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError e) {
+                e.printStackTrace();
+                funct.loadingHide();
+                funct.notifikasiDismisable(peak_flow_fragment_1_root_layout,"Pastikan internet anda aktif dan coba kembali");
+            }
+        });
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(jsonObjReq);
     }
 
 }

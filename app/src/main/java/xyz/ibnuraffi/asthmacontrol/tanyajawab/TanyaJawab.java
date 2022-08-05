@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.android.volley.Request;
@@ -63,6 +64,15 @@ public class TanyaJawab extends AppCompatActivity {
         list_view = findViewById(R.id.list_view);
         adapter = new TanyaJawabAdapter(TanyaJawab.this, model);
         list_view.setAdapter(adapter);
+        list_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String id = view.getTag().toString();
+                Intent intent = new Intent(TanyaJawab.this, TanyaJawabChats.class);
+                intent.putExtra("tiket_id", id);
+                startActivity(intent);
+            }
+        });
 
         tambah = findViewById(R.id.tambah);
         tambah.setOnClickListener(new View.OnClickListener() {

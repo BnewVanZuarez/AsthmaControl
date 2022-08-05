@@ -40,7 +40,18 @@ public class PeakFlowFragment2 extends Fragment {
 
         peakFlow = (PeakFlow) getActivity();
         peakFlow.peak_flow_fragment_2_root_layout = view.findViewById(R.id.root_layout);
+        peakFlow.peak_flow_fragment_2_chart = view.findViewById(R.id.chart);
+        peakFlow.peak_flow_fragment_2_chart.setDragEnabled(false);
+        peakFlow.peak_flow_fragment_2_chart.setScaleEnabled(false);
+        // if disabled, scaling can be done on x- and y-axis separately
+        peakFlow.peak_flow_fragment_2_chart.setPinchZoom(false);
+        peakFlow.peak_flow_fragment_2_chart.getAxisRight().setEnabled(false);
+        peakFlow.peak_flow_fragment_2_chart.getDescription().setEnabled(false);
+        peakFlow.peak_flow_fragment_2_chart.getLegend().setEnabled(false);
+        peakFlow.peak_flow_fragment_2_chart.getLegend().setWordWrapEnabled(true);
+        peakFlow.peak_flow_fragment_2_chart.getXAxis().setEnabled(false);
 
+        peakFlow.grafikPeakFlowGetData();
 
         return view;
     }

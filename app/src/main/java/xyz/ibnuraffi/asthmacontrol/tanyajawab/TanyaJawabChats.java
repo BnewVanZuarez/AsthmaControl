@@ -1,9 +1,8 @@
-package xyz.ibnuraffi.asthmacontrol.profile;
+package xyz.ibnuraffi.asthmacontrol.tanyajawab;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,47 +10,48 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ListView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.textfield.TextInputEditText;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 import xyz.ibnuraffi.asthmacontrol.R;
-import xyz.ibnuraffi.asthmacontrol.home.MainActivity;
-import xyz.ibnuraffi.asthmacontrol.home.MainActivityEdukasi;
-import xyz.ibnuraffi.asthmacontrol.home.MainActivityEdukasiAdapter;
-import xyz.ibnuraffi.asthmacontrol.home.MainActivityEdukasiModel;
+import xyz.ibnuraffi.asthmacontrol.daftarobat.DaftarObatTambah;
 import xyz.ibnuraffi.asthmacontrol.utils.AppController;
+import xyz.ibnuraffi.asthmacontrol.utils.EndlessScrollListener;
 import xyz.ibnuraffi.asthmacontrol.utils.Funct;
 import xyz.ibnuraffi.asthmacontrol.utils.Session;
-import xyz.ibnuraffi.asthmacontrol.webview.WebView;
 
-public class Profile extends AppCompatActivity {
+public class TanyaJawabChats extends AppCompatActivity {
 
     private Funct funct;
     private Session session;
     private CoordinatorLayout root_layout;
     private Toolbar toolbar;
 
-    private TextInputEditText input_email;
-    private TextInputEditText input_password;
-    private TextInputEditText input_nama;
-    private TextInputEditText input_notelp;
-    private MaterialButton btn_simpan;
+    //list data
+    private ListView list_view;
+    private TanyaJawabChatsAdapter adapter;
+    private ArrayList<TanyaJawabChatsModel> model = new ArrayList<>();
+
+    private String tiket_id = "";
+
+    private EditText text_content;
+    private ImageView btn_send;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.profile);
+        setContentView(R.layout.tanya_jawab_chats);
 
         funct = new Funct(this);
         session = new Session(this);
@@ -60,31 +60,34 @@ public class Profile extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Profil");
+        getSupportActionBar().setTitle("Kode");
 
-        input_email = findViewById(R.id.input_email);
-        input_password = findViewById(R.id.input_password);
-        input_nama = findViewById(R.id.input_nama);
-        input_notelp = findViewById(R.id.input_notelp);
-        btn_simpan = findViewById(R.id.btn_simpan);
+        Bundle bundle = getIntent().getExtras();
+        if(bundle != null) {
+            tiket_id = bundle.getString("tiket_id");
+            chats(session.getEmail(), session.getHash(), tiket_id);
+        }
 
-        btn_simpan.setOnClickListener(new View.OnClickListener() {
+        list_view = findViewById(R.id.list_view);
+        adapter = new TanyaJawabChatsAdapter(TanyaJawabChats.this, model);
+        list_view.setAdapter(adapter);
+
+        text_content = findViewById(R.id.text_content);
+        btn_send = findViewById(R.id.btn_send);
+
+        btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String pw = input_password.getText().toString();
-                String nm = input_nama.getText().toString();
-                String tp = input_notelp.getText().toString();
-                updateProfil(session.getEmail(), session.getHash(), pw, nm, tp);
+                String tc = text_content.getText().toString();
+                kirimChat(session.getEmail(), session.getHash(), tiket_id, tc);
             }
         });
-
-        cekLogin(session.getEmail(), session.getHash());
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        cekLogin(session.getEmail(), session.getHash());
+        chats(session.getEmail(), session.getHash(), tiket_id);
     }
 
     @Override
@@ -110,55 +113,58 @@ public class Profile extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void cekLogin(String email, String hash){
+    public void chats(final String email, final String hash, String tiket_id){
         funct.loadingShow();
         JSONObject parram = new JSONObject();
         try {
-            parram.put("aksi","cek_login");
-            parram.put("email",email);
-            parram.put("hash",hash);
-        }catch (JSONException e){
+            parram.put("aksi", "daftar_pesan");
+            parram.put("email", email);
+            parram.put("hash", hash);
+            parram.put("tiket_id", tiket_id);
+        } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,getResources().getString(R.string.server) + "home/home.php", parram,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            Boolean status = response.getBoolean("status");
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, getResources().getString(R.string.server) + "tanya_jawab/home.php", parram, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    Boolean status = response.getBoolean("status");
 
-                            if(status) {
-                                JSONObject data = new JSONObject(response.getString("data"));
-                                JSONObject info = new JSONObject(data.getString("info"));
+                    if (status){
+                        JSONObject data = new JSONObject(response.getString("data"));
+                        JSONObject info = new JSONObject(data.getString("info"));
 
-                                String error = info.getString("error");
-                                String detail = info.getString("detail");
-                                String link = info.getString("link");
-                                Boolean login = data.getBoolean("login");
+                        String error = info.getString("error");
+                        String detail = info.getString("detail");
+                        String link = info.getString("link");
+                        Boolean login = data.getBoolean("login");
 
-                                if(error.equals("1")) {
-                                    if (login){
+                        if(error.equals("1")) {
+                            if (login){
 
-                                        JSONObject login_data = new JSONObject(data.getString("login_data"));
-                                        input_email.setText(login_data.getString("email"));
-                                        input_nama.setText(login_data.getString("nama_lengkap"));
-                                        input_notelp.setText(login_data.getString("no_telp"));
+                                JSONObject detail_chat = new JSONObject(data.getString("detail"));
+                                getSupportActionBar().setTitle("#"+detail_chat.getString("no_tiket"));
 
-                                    }else{
-                                        funct.logout();
-                                    }
-                                }else if(error.equals("2")) {
-                                    funct.notifikasiShow(detail, link);
-                                }
+                                model.clear();
+                                model.addAll(TanyaJawabChatsModel.fromJson(data.optJSONArray("riwayat")));
+                                adapter.notifyDataSetChanged();
 
+                            }else{
+                                funct.logout();
                             }
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                        }else if(error.equals("2")) {
+                            funct.notifikasiShow(detail, link);
                         }
-                        funct.loadingHide();
+
                     }
-                }, new Response.ErrorListener() {
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                funct.loadingHide();
+            }
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError e) {
                 e.printStackTrace();
@@ -166,41 +172,24 @@ public class Profile extends AppCompatActivity {
                 funct.notifikasiDismisable(root_layout,"Pastikan internet anda aktif dan coba kembali");
             }
         });
-//        {
-//            @Override
-//            protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
-//                try {
-//                    String jsonString = new String(response.data, HttpHeaderParser.parseCharset(response.headers, PROTOCOL_CHARSET));
-//                    Log.d("Home ", jsonString);
-//                    System.out.println("Home "+jsonString);
-//                    return Response.success(new JSONObject(jsonString), HttpHeaderParser.parseCacheHeaders(response));
-//                } catch (UnsupportedEncodingException e) {
-//                    return Response.error(new ParseError(e));
-//                } catch (JSONException je) {
-//                    return Response.error(new ParseError(je));
-//                }
-//            }
-//        };
 
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(jsonObjReq);
-
     }
 
-    public void updateProfil(final String email, final String hash, String password, String nama_lengkap, String no_telp){
+    public void kirimChat(final String email, final String hash, String tiket_id, String pesan){
         funct.loadingShow();
         JSONObject parram = new JSONObject();
         try {
-            parram.put("aksi", "update_profil");
+            parram.put("aksi", "kirim_pesan");
             parram.put("email", email);
             parram.put("hash", hash);
-            parram.put("password", password);
-            parram.put("nama_lengkap", nama_lengkap);
-            parram.put("no_telp", no_telp);
+            parram.put("tiket_id", tiket_id);
+            parram.put("pesan", pesan);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, getResources().getString(R.string.server) + "profil/home.php", parram, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, getResources().getString(R.string.server) + "tanya_jawab/home.php", parram, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
@@ -219,10 +208,8 @@ public class Profile extends AppCompatActivity {
 
                             if (login){
 
-                                if(!TextUtils.isEmpty(detail)) {
-                                    funct.notifikasiDismisable(root_layout,detail);
-                                }
-                                //cekLogin(session.getEmail(), session.getHash());
+                                text_content.setText("");
+                                chats(session.getEmail(), session.getHash(), tiket_id);
 
                             }else {
                                 funct.logout();

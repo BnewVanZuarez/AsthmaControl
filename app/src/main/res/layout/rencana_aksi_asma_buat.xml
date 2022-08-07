@@ -121,6 +121,346 @@
                             android:layout_width="0dp"
                             android:layout_height="@dimen/spacing_smlarge" />
 
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Kontak Darurat"
+                            app:endIconDrawable="@drawable/ic_baseline_account_circle_24"
+                            app:endIconMode="custom"
+                            app:endIconTint="@color/colorPrimaryLight">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/input_kontak_darurat"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text"
+                                android:maxLines="1" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/spacing_smlarge" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="No. Telp Darurat"
+                            app:endIconDrawable="@drawable/ic_baseline_phone_android_24"
+                            app:endIconMode="custom"
+                            app:endIconTint="@color/colorPrimaryLight">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/input_telp_darurat"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="phone"
+                                android:maxLines="1" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/spacing_smlarge" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/spacing_smlarge" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_large"
+                    android:layout_marginRight="@dimen/spacing_large"
+                    android:background="@android:color/white"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="3dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/spacing_large"
+                        android:paddingLeft="@dimen/spacing_large"
+                        android:paddingRight="@dimen/spacing_large">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_large"
+                            android:gravity="center"
+                            android:text="Obat yang digunakan sebelum olahraga"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textStyle="normal"
+                            android:textColor="@color/colorPrimaryDark"
+                            app:fontFamily="sans-serif-light" />
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="4dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            app:tint="@color/colorPrimaryDark"
+                            android:src="@drawable/swipe_up_handle" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Nama Obat"
+                            app:endIconDrawable="@drawable/ic_baseline_account_circle_24"
+                            app:endIconMode="custom"
+                            app:endIconTint="@color/colorPrimaryLight">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/input_obat"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text"
+                                android:maxLines="1" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/spacing_smlarge" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Dosis Obat"
+                            app:endIconDrawable="@drawable/ic_baseline_account_circle_24"
+                            app:endIconMode="custom"
+                            app:endIconTint="@color/colorPrimaryLight">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/input_dosis"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text"
+                                android:maxLines="1" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/spacing_smlarge" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Digunakan Saat"
+                            app:endIconDrawable="@drawable/ic_baseline_account_circle_24"
+                            app:endIconMode="custom"
+                            app:endIconTint="@color/colorPrimaryLight">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/input_digunakan"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text"
+                                android:maxLines="1" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/spacing_smlarge" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Instruksi Tambahan"
+                            app:endIconDrawable="@drawable/ic_baseline_account_circle_24"
+                            app:endIconMode="custom"
+                            app:endIconTint="@color/colorPrimaryLight">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/input_instruksi"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="textMultiLine"
+                                android:maxLines="3" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/spacing_smlarge" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/spacing_smlarge" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_large"
+                    android:layout_marginRight="@dimen/spacing_large"
+                    android:background="@android:color/white"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="3dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/spacing_large"
+                        android:paddingLeft="@dimen/spacing_large"
+                        android:paddingRight="@dimen/spacing_large">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_large"
+                            android:gravity="center"
+                            android:text="Pemicu"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimaryDark"
+                            app:fontFamily="sans-serif-medium" />
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="4dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            app:tint="@color/colorPrimaryDark"
+                            android:src="@drawable/swipe_up_handle" />
+
+                        <CheckBox
+                            android:id="@+id/pemicu1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead.Bold"
+                            android:text="Serbuk Sari"
+                            app:buttonTint="@color/colorPrimary"/>
+
+                        <CheckBox
+                            android:id="@+id/pemicu2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead.Bold"
+                            android:text="Aktivitas Berat"
+                            app:buttonTint="@color/colorPrimary"/>
+
+                        <CheckBox
+                            android:id="@+id/pemicu3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead.Bold"
+                            android:text="Jamur"
+                            app:buttonTint="@color/colorPrimary"/>
+
+                        <CheckBox
+                            android:id="@+id/pemicu4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead.Bold"
+                            android:text="Influenza"
+                            app:buttonTint="@color/colorPrimary"/>
+
+                        <CheckBox
+                            android:id="@+id/pemicu5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead.Bold"
+                            android:text="Tungau Debu"
+                            app:buttonTint="@color/colorPrimary"/>
+
+                        <CheckBox
+                            android:id="@+id/pemicu6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead.Bold"
+                            android:text="Perubahan Cuaca"
+                            app:buttonTint="@color/colorPrimary"/>
+
+                        <CheckBox
+                            android:id="@+id/pemicu7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead.Bold"
+                            android:text="Hewan Tertentu"
+                            app:buttonTint="@color/colorPrimary"/>
+
+                        <CheckBox
+                            android:id="@+id/pemicu8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead.Bold"
+                            android:text="Polisi Udara"
+                            app:buttonTint="@color/colorPrimary"/>
+
+                        <CheckBox
+                            android:id="@+id/pemicu9"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead.Bold"
+                            android:text="Asap"
+                            app:buttonTint="@color/colorPrimary"/>
+
+                        <CheckBox
+                            android:id="@+id/pemicu10"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead.Bold"
+                            android:text="Makanan"
+                            app:buttonTint="@color/colorPrimary"/>
+
+                        <CheckBox
+                            android:id="@+id/pemicu11"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead.Bold"
+                            android:text="Lain-lain"
+                            app:buttonTint="@color/colorPrimary"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/spacing_smlarge" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_large"
+                    android:layout_marginRight="@dimen/spacing_large"
+                    android:background="@android:color/white"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="3dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/spacing_large">
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/Widget.MaterialComponents.Button"
+                            android:id="@+id/btn_selanjutnya"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/spacing_xxxlarge"
+                            android:text="SELANJUTNYA"
+                            app:icon="@drawable/ic_baseline_keyboard_arrow_right_24"
+                            app:iconGravity="textStart" />
+
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>

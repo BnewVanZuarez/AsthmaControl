@@ -41,7 +41,7 @@
                     android:id="@+id/list_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:listitem="@layout/daily_jurnal_row" />
+                    tools:listitem="@layout/rencana_aksi_asma_row" />
 
             </RelativeLayout>
 

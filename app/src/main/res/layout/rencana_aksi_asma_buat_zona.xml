@@ -136,6 +136,7 @@
                                 app:hintEnabled="false">
 
                                 <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/hijau_peakflow_dari"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint="Peakflow dari"
@@ -159,6 +160,7 @@
                                 app:hintEnabled="false">
 
                                 <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/hijau_peakflow_ke"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint="Peakflow ke"
@@ -178,6 +180,25 @@
                             android:text="List obat rutin yang dikonsumsi untuk pengendalian asma :"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                             android:textColor="@color/grey_90" />
+
+                        <LinearLayout
+                            android:id="@+id/obat_hijau"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <!--Dynamic Form-->
+
+                        </LinearLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/Widget.MaterialComponents.Button"
+                            android:id="@+id/add_obat_hijau"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/spacing_xxxlarge"
+                            android:text="Tambah Data Obat"
+                            app:icon="@drawable/ic_baseline_add_circle_24"
+                            app:iconGravity="textStart" />
 
                     </LinearLayout>
 
@@ -289,6 +310,7 @@
                                 app:hintEnabled="false">
 
                                 <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/kuning_peakflow_dari"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint="Peakflow dari"
@@ -312,6 +334,7 @@
                                 app:hintEnabled="false">
 
                                 <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/kuning_peakflow_ke"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint="Peakflow ke"
@@ -331,6 +354,25 @@
                             android:text="Mengonsumsi obat rutin harian seperti di zona hijau ditambah obat yang membantu meredakan gejala tambahan, yakni :"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                             android:textColor="@color/grey_90" />
+
+                        <LinearLayout
+                            android:id="@+id/obat_kuning"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <!--Dynamic Form-->
+
+                        </LinearLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/Widget.MaterialComponents.Button"
+                            android:id="@+id/add_obat_kuning"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/spacing_xxxlarge"
+                            android:text="Tambah Data Obat"
+                            app:icon="@drawable/ic_baseline_add_circle_24"
+                            app:iconGravity="textStart" />
 
                     </LinearLayout>
 
@@ -435,6 +477,7 @@
                                 app:hintEnabled="false">
 
                                 <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/merah_peakflow_dari"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint="Peakflow dari"
@@ -458,6 +501,7 @@
                                 app:hintEnabled="false">
 
                                 <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/merah_peakflow_ke"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint="Peakflow ke"
@@ -477,6 +521,57 @@
                             android:text="Konsumsi obat-obatan ini dan telepon dokter sekarang"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                             android:textColor="@color/grey_90" />
+
+                        <LinearLayout
+                            android:id="@+id/obat_merah"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <!--Dynamic Form-->
+
+                        </LinearLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/Widget.MaterialComponents.Button"
+                            android:id="@+id/add_obat_merah"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/spacing_xxxlarge"
+                            android:text="Tambah Data Obat"
+                            app:icon="@drawable/ic_baseline_add_circle_24"
+                            app:iconGravity="textStart" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/spacing_smlarge" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_large"
+                    android:layout_marginRight="@dimen/spacing_large"
+                    android:background="@android:color/white"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="3dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/spacing_large">
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/Widget.MaterialComponents.Button"
+                            android:id="@+id/btn_simpan"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/spacing_xxxlarge"
+                            android:text="SIMPAN"
+                            app:icon="@drawable/ic_baseline_save_24"
+                            app:iconGravity="textStart" />
 
                     </LinearLayout>
 

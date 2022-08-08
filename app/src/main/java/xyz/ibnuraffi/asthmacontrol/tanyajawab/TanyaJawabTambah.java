@@ -117,7 +117,7 @@ public class TanyaJawabTambah extends AppCompatActivity {
                             if (login){
 
                                 if(!TextUtils.isEmpty(detail)) {
-                                    funct.notifikasiDismisable(root_layout,detail+" - "+tiket_id);
+                                    funct.notifikasiDismisable(root_layout,detail);
                                 }
                                 Intent intent = new Intent(TanyaJawabTambah.this, TanyaJawabChats.class);
                                 intent.putExtra("tiket_id", tiket_id);

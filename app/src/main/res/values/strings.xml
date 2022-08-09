@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">AsthmaControl</string>
     <string name="versi">1.0</string>
-    <string name="server">http://192.168.8.104/AsthmaControlApi/api/</string>
-    <string name="webview">http://192.168.8.104/AsthmaControlApi/webview/</string>
+    <string name="server">https://ellastistunasmandiri.com/demo/asthma/api/</string>
+    <string name="webview">https://ellastistunasmandiri.com/demo/asthma/webview/</string>
     <string name="loading">loading..</string>
     <string name="pertanyaan_1">Dalam 4 minggu terakhir seberapa sering asma Anda mengganggu Anda untuk melakukan pekerjaan sehari-hari di kantor, di sekolah atau di rumah?</string>
     <string name="pertanyaan_2">Dalam 4 minggu terakhir seberapa seringkah Anda mengalami sesak napas?</string>
